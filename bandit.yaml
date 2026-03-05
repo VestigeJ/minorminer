@@ -1,0 +1,11 @@
+exclude_dirs:
+  - tests
+  - docs
+  - releasenotes
+  - examples
+  - external
+  - venv
+  - .venv
+  - .git
+  - .circleci
+  - .github

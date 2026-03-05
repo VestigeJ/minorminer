@@ -73,3 +73,20 @@ archs = "AMD64"
 
 [tool.setuptools.dynamic]
 version = {attr = "minorminer.__version__"}
+
+[tool.ruff]
+exclude = [
+    ".git",
+    ".github",
+    ".circleci",
+    "docs",
+    "tests",
+    "releasenotes",
+    "examples",
+    "external",
+    "venv",
+    ".venv",
+]
+
+[tool.ruff.lint]
+select = ["S"]

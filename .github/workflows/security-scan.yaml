@@ -1,0 +1,32 @@
+name: security-scan
+
+on: [push, pull_request]
+
+jobs:
+  security:
+    name: Run Security Audits
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v6.0.2
+      
+    - name: Setup Python
+      uses: actions/setup-python@v6.2.0
+      with:
+        python-version: "3.10"
+
+    - name: Install Dependencies
+      run: |
+        pip install --upgrade pip
+        pip install bandit pip-audit ruff
+        pip install .
+
+    - name: Run Bandit Scan
+      run: bandit -r . -c bandit.yaml -ll -ii
+
+    - name: Run Ruff Security Lint
+      run: ruff check .
+
+    - name: Run pip-audit
+      run: pip-audit
